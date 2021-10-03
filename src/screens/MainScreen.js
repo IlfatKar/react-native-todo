@@ -1,18 +1,22 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
 import { AddTodo } from '../components/AddTodo'
 import { Todo } from '../components/Todo'
 
-export const MainScreen = ({ addTodo, delTodo, todos }) => {
+export const MainScreen = ({ addTodo, delTodo, todos, onOpen }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <AddTodo onSubmit={addTodo} />
       <FlatList
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Todo delTodo={delTodo} todo={item} />}
+        renderItem={({ item }) => <Todo onOpen={onOpen} delTodo={delTodo} todo={item} />}
         data={todos}
       />
     </View>
   )
 }
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
