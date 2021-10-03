@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
-import { View, StyleSheet, Text, Button } from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, Text, Dimensions } from 'react-native'
 import { THEME } from '../theme'
-import {Card} from '../components/Card'
+import { AppCard } from '../components/ui/AppCard'
 import { EditModal } from '../components/EditModal'
+import { AppButton } from '../components/ui/AppButton'
+import { FontAwesome, AntDesign } from '@expo/vector-icons'
 
 export const TodoScreen = ({ goBack, todo, delTodo, onSave }) => {
   const [modal, setModal] = useState(false)
@@ -14,18 +16,24 @@ export const TodoScreen = ({ goBack, todo, delTodo, onSave }) => {
 
   return (
     <View style={styles.container}>
-      <EditModal value={todo.title} visible={modal} onCancel={() => setModal(false)} onSave={saveHandler}/>
+      <EditModal value={todo.title} visible={modal} onCancel={() => setModal(false)} onSave={saveHandler} />
 
-      <Card>
+      <AppCard>
         <Text style={styles.title}>{todo.title}</Text>
-        <Button title='Ред.' onPress={() => setModal(true)}/>
-      </Card>
+        <AppButton onPress={() => setModal(true)}>
+          <FontAwesome name='edit' size={20} />
+        </AppButton>
+      </AppCard>
       <View style={styles.buttons}>
         <View style={styles.btn}>
-          <Button title='Назад' color={THEME.GREY_COLOR} onPress={goBack} />
+          <AppButton color={THEME.GREY_COLOR} onPress={goBack}>
+            <AntDesign name='back' size={20} color='#fff' />
+          </AppButton>
         </View>
         <View style={styles.btn}>
-          <Button title='Удалить' onPress={() => delTodo(todo.id)} color={THEME.DANGER_COLOR} />
+          <AppButton onPress={() => delTodo(todo.id)} color={THEME.DANGER_COLOR}>
+            <FontAwesome name='remove' size={20} color='#fff' />
+          </AppButton>
         </View>
       </View>
     </View>
@@ -44,5 +52,5 @@ const styles = StyleSheet.create({
   title: {
     flexShrink: 1,
     fontSize: 22,
-  }
+  },
 })

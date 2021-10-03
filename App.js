@@ -12,9 +12,7 @@ export default function App() {
   const delTodo = (id) => {
     Alert.alert(
       'Удаление элемента',
-      `Вы уверены, что хотите удалить '${
-        todos.find((t) => t.id === id).title
-      }'?`,
+      `Вы уверены, что хотите удалить '${todos.find((t) => t.id === id).title}'?`,
       [
         {
           text: 'Отмена',
@@ -53,14 +51,7 @@ export default function App() {
     )
   }
 
-  let content = (
-    <MainScreen
-      onOpen={setTodoId}
-      todos={todos}
-      delTodo={delTodo}
-      addTodo={addTodo}
-    />
-  )
+  let content = <MainScreen onOpen={setTodoId} todos={todos} delTodo={delTodo} addTodo={addTodo} />
 
   if (todoId) {
     content = (

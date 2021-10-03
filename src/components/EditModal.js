@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TextInput, Button, Modal, Alert } from 'react-native'
+import { View, StyleSheet, TextInput, Modal, Alert } from 'react-native'
 import { THEME } from '../theme'
+import { AppButton } from './ui/AppButton'
 
 export const EditModal = ({ visible, onCancel, value, onSave }) => {
   const [title, setTitle] = useState(value)
 
   const saveHandler = () => {
-    if(!title.trim()){
+    if (!title.trim()) {
       Alert.alert('Ошибка', 'Поле не может быть пустым')
     } else {
       onSave(title)
@@ -23,12 +24,10 @@ export const EditModal = ({ visible, onCancel, value, onSave }) => {
           style={styles.input}
         />
         <View style={styles.btns}>
-          <Button
-            onPress={onCancel}
-            title='Отменить'
-            color={THEME.DANGER_COLOR}
-          />
-          <Button title='Сохранить' onPress={saveHandler}/>
+          <AppButton onPress={onCancel} color={THEME.DANGER_COLOR}>
+            Отменить
+          </AppButton>
+          <AppButton onPress={saveHandler}>Сохранить</AppButton>
         </View>
       </View>
     </Modal>
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   },
   btns: {
     flexDirection: 'row',
-    width: '90%',
+    width: '80%',
     justifyContent: 'space-around',
   },
 })
