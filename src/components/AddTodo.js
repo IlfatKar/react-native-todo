@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import {View, StyleSheet, TextInput, Button, Alert} from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
 
-export const AddTodo = props => {
+export const AddTodo = (props) => {
   const [value, setValue] = useState([])
   const pressHandler = () => {
-    if(value.trim()){
+    if (value.trim()) {
       props.onSubmit(value)
       setValue('')
     } else {
@@ -13,8 +13,15 @@ export const AddTodo = props => {
   }
   return (
     <View style={styles.wrapper}>
-      <TextInput onChangeText={setValue} value={value || ''} placeholder="Название задачи" autoCorrect={false}  autoCapitalize='none' style={styles.input}/>
-      <Button style={styles.button} title="Добавить" onPress={pressHandler} />
+      <TextInput
+        onChangeText={setValue}
+        value={value || ''}
+        placeholder='Название задачи'
+        autoCorrect={false}
+        autoCapitalize='none'
+        style={styles.input}
+      />
+      <Button style={styles.button} title='Добавить' onPress={pressHandler} />
     </View>
   )
 }
@@ -24,12 +31,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  input:{
+  input: {
     padding: 10,
     borderBottomColor: '#3949ab',
     borderStyle: 'solid',
     borderBottomWidth: 2,
     width: '70%',
   },
-  button:{},
+  button: {},
 })
